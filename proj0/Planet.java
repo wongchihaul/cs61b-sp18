@@ -48,7 +48,7 @@ public class Planet{
     public double calcForceExertedByY(Planet q){
         double force_Y, distance_Y;
         distance_Y = q.yyPos - this.yyPos;
-        force_Y = (calcForceExertedBy(q) * distance_Y / calcDistance(q);
+        force_Y = calcForceExertedBy(q) * distance_Y / calcDistance(q);
         return force_Y;
     }
 
