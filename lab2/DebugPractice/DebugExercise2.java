@@ -5,7 +5,7 @@
 public class DebugExercise2 {
     /** Returns the max of a and b. Do not step into this function. 
       * This function may have a bug, but if it does, you should find it
-      * by stepping over, not into. */
+      * by stepping over, not into. **/
     public static int max(int a, int b) {
         int w = (b - a) >> 31;
         /* If you're stepping into this function, click the
