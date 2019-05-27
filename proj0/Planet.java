@@ -40,15 +40,15 @@ public class Planet{
 
     public double calcForceExertedByX(Planet q){
         double force_X, distance_X;
-        distance_X = this.xxPos - q.xxPos;
-        force_X = Math.abs(calcForceExertedBy(q) * distance_X / calcDistance(q));
+        distance_X = q.xxPos - this.xxPos;
+        force_X = calcForceExertedBy(q) * distance_X / calcDistance(q);
         return force_X;
     }
 
     public double calcForceExertedByY(Planet q){
         double force_Y, distance_Y;
-        distance_Y = this.yyPos - q.yyPos;
-        force_Y = Math.abs(calcForceExertedBy(q) * distance_Y / calcDistance(q));
+        distance_Y = q.yyPos - this.yyPos;
+        force_Y = (calcForceExertedBy(q) * distance_Y / calcDistance(q);
         return force_Y;
     }
 
