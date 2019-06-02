@@ -1,4 +1,3 @@
-import java.lang.*;
 
 public class ArrayDeque<T> {
 
@@ -16,32 +15,13 @@ public class ArrayDeque<T> {
     }
 
     /**Resize the array*/
-//    public T resize (int len) {
-//        T[] newArr = (T[]) new Object[len];
-//        if(len > this.arr.length) {
-//            if (nextFirst >= nextLast) {
-//                System.arraycopy(this.arr, 0, newArr, 0, nextLast);
-//                System.arraycopy(this.arr, nextFirst + 1, newArr, len - this.arr.length + nextFirst + 1,
-//                        size - nextFirst);
-//            } else {
-//                System.arraycopy(this.arr, 0, newArr, 0, size);
-//            }
-//        } else {
-//            if (nextFirst >= nextLast) {
-//                System.arraycopy(this.arr, 0, newArr, 0, nextLast);
-//                System.arraycopy(this.arr, nextFirst + 1, newArr, nextFirst + 1 - len,
-//                        this.arr.length - 1 - nextFirst);
-//            } else {
-//                System.arraycopy(this.arr, nextFirst, newArr, nextFirst - len , size);
-//            }
-//        }
-//    }
-    public void resize(int capacity){
+
+    public void resize(int capacity) {
         int n = arr.length;
         T[] a = (T[]) new Object[capacity];
         int pointer = 0;
-        while(arr[pointer] == null){
-            pointer ++;
+        while (arr[pointer] == null) {
+            pointer++;
         }
         System.arraycopy(this.arr, pointer, a, 0, size);
         arr = a;
@@ -53,12 +33,11 @@ public class ArrayDeque<T> {
         arr[nextFirst] = item;
         if (nextFirst == 0) {
             nextFirst = this.arr.length - 1;
+        } else {
+            this.nextFirst--;
         }
-        else {
-            this.nextFirst -- ;
-        }
-        size ++ ;
-        if (size == this.arr.length){
+        size++;
+        if (size == this.arr.length) {
             this.resize(arr.length * 2);
         }
     }
@@ -66,8 +45,8 @@ public class ArrayDeque<T> {
     public void addLast(T item) {
         arr[nextLast] = item;
         nextLast = (nextLast + 1) % (this.arr.length - 1);
-        size ++ ;
-        if (size == this.arr.length){
+        size++;
+        if (size == this.arr.length) {
             this.resize(arr.length * 2);
         }
     }
@@ -102,15 +81,15 @@ public class ArrayDeque<T> {
 //
 //    }
 
-    public void printDeque(){
+    public void printDeque() {
 
         int pointer = nextFirst % (arr.length - 1) + 1;
-        while( pointer <= arr.length - 1){
+        while (pointer <= arr.length - 1) {
             System.out.print(this.arr[pointer] + " ");
             pointer += 1;
         }
         pointer = 0;
-        while( pointer <= nextFirst ){
+        while (pointer <= nextFirst) {
             System.out.print(this.arr[pointer] + " ");
             pointer += 1;
         }
@@ -127,15 +106,14 @@ public class ArrayDeque<T> {
             item = arr[0];
             arr[0] = null;
             nextFirst = 0;
-        }
-        else {
+        } else {
             item = arr [nextFirst + 1];
             arr[nextFirst + 1] = null;
-            nextFirst ++ ;
+            nextFirst++;
         }
-        size -- ;
+        size--;
         if (arr.length >= 16 &&  size > 0 && size == arr.length / 4) {
-            resize (arr.length / 2);
+            resize(arr.length / 2);
         }
         return item;
     }
@@ -152,11 +130,11 @@ public class ArrayDeque<T> {
         } else {
             item = arr[nextLast - 1];
             arr[nextLast - 1] = null;
-            nextLast -- ;
+            nextLast--;
         }
-        size -- ;
+        size--;
         if (arr.length >= 16 &&  size > 0 && size == arr.length / 4) {
-            resize (arr.length / 2);
+            resize(arr.length / 2);
         }
         return item;
     }
@@ -165,18 +143,18 @@ public class ArrayDeque<T> {
     public T get(int index) {
         int indexInArray;
         int starter = nextFirst + 1;
-        if(index > this.size - 1) {
+        if (index > this.size - 1) {
             return null;
-        }else{
-            if(nextFirst == arr.length - 1) {
+        } else {
+            if (nextFirst == arr.length - 1) {
                 indexInArray = index;
             } else {
-                if( index < arr.length - 1 - starter ) {
-                    indexInArray = (starter + index ) % ( arr.length - 1);
-                }else if( index == arr.length -1 - starter) {
-                    indexInArray = arr.length -1;
-                }else {
-                    indexInArray = (starter + index ) % ( arr.length - 1) - 1;
+                if (index < arr.length - 1 - starter) {
+                    indexInArray = (starter + index) % (arr.length - 1);
+                } else if (index == arr.length - 1 - starter) {
+                    indexInArray = arr.length - 1;
+                } else {
+                    indexInArray = (starter + index) % (arr.length - 1) - 1;
                 }
             }
         }
