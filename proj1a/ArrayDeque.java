@@ -1,4 +1,3 @@
-
 public class ArrayDeque<T> {
 
     private T[] arr;
@@ -16,7 +15,7 @@ public class ArrayDeque<T> {
 
     /**Resize the array*/
 
-    public void resize(int capacity) {
+    private void resize(int capacity) {
         int n = arr.length;
         T[] a = (T[]) new Object[capacity];
         int pointer = 0;
@@ -31,13 +30,13 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         arr[nextFirst] = item;
-        if (nextFirst == 0) {
-            nextFirst = this.arr.length - 1;
+        if (this.nextFirst == 0) {
+            this.nextFirst = this.arr.length - 1;
         } else {
             this.nextFirst--;
         }
-        size++;
-        if (size == this.arr.length) {
+        this.size++;
+        if (this.size == this.arr.length) {
             this.resize(arr.length * 2);
         }
     }
@@ -45,8 +44,8 @@ public class ArrayDeque<T> {
     public void addLast(T item) {
         arr[nextLast] = item;
         nextLast = (nextLast + 1) % (this.arr.length - 1);
-        size++;
-        if (size == this.arr.length) {
+        this.size++;
+        if (this.size == this.arr.length) {
             this.resize(arr.length * 2);
         }
     }
@@ -59,27 +58,7 @@ public class ArrayDeque<T> {
         return this.size;
     }
 
-//    public void printDeque() {
-//        int ptr = nextFirst % (arr.length - 1) + 1;
-//        if (nextFirst > nextLast) {
-//            while (ptr <= arr.length - 1) {
-//                System.out.println(arr[ptr] + " ");
-//                ptr ++ ;
-//            }
-//            ptr = 0;
-//            while (ptr < nextLast) {
-//                System.out.println(arr[ptr] + " ");
-//                ptr ++ ;
-//            }
-//        }
-//        else {
-//            while (ptr < nextLast) {
-//                System.out.println(arr[ptr] + " ");
-//                ptr ++ ;
-//            }
-//        }
-//
-//    }
+
 
     public void printDeque() {
 
@@ -102,12 +81,12 @@ public class ArrayDeque<T> {
             return null;
         }
         T item;
-        if (nextFirst == this.arr.length - 1) {
+        if (nextFirst == arr.length - 1) {
             item = arr[0];
             arr[0] = null;
             nextFirst = 0;
         } else {
-            item = arr [nextFirst + 1];
+            item = arr[nextFirst + 1];
             arr[nextFirst + 1] = null;
             nextFirst++;
         }
