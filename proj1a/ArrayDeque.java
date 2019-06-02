@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 public class ArrayDeque<Item>{
     private Item[] arr;
+=======
+
+public class ArrayDeque<T> {
+
+    private T[] arr;
+>>>>>>> parent of deefccd... Week 3
     private int size = 0;
     private int nextFirst = 0;
     private int nextLast = 1;
@@ -10,11 +17,25 @@ public class ArrayDeque<Item>{
 
 
 
+<<<<<<< HEAD
 //The signature of the constructor should be public ArrayDeque(). That is, you need only worry about initializing empty ArrayDeques.
 //your ArrayDeque class must include a zero argument constructor that creates an empty Deque.
 
     public ArrayDeque(){
         arr =  (Item[]) new Object[MIN_INITIAL_CAPACITY];
+=======
+    public void resize(int capacity) {
+        int n = arr.length;
+        T[] a = (T[]) new Object[capacity];
+        int pointer = 0;
+        while (arr[pointer] == null) {
+            pointer++;
+        }
+        System.arraycopy(this.arr, pointer, a, 0, size);
+        arr = a;
+        nextFirst = capacity - 1;
+        nextLast = n;
+>>>>>>> parent of deefccd... Week 3
     }
 
 
@@ -28,6 +49,7 @@ public class ArrayDeque<Item>{
             throw new NullPointerException();
         }
         arr[nextFirst] = item;
+<<<<<<< HEAD
         if(this.nextFirst == 0){
             nextFirst = this.arr.length - 1;
         }else{
@@ -36,6 +58,16 @@ public class ArrayDeque<Item>{
         size += 1;
         if( size == arr.length){
             this.resize(arr.length*2);
+=======
+        if (nextFirst == 0) {
+            nextFirst = this.arr.length - 1;
+        } else {
+            this.nextFirst--;
+        }
+        size++;
+        if (size == this.arr.length) {
+            this.resize(arr.length * 2);
+>>>>>>> parent of deefccd... Week 3
         }
     }
 
@@ -58,9 +90,15 @@ public class ArrayDeque<Item>{
         }
         arr[nextLast] = item;
         nextLast = (nextLast + 1) % (this.arr.length - 1);
+<<<<<<< HEAD
         size += 1;
         if( size == arr.length){
             this.resize(arr.length*2);
+=======
+        size++;
+        if (size == this.arr.length) {
+            this.resize(arr.length * 2);
+>>>>>>> parent of deefccd... Week 3
         }
     }
     // if(nextFirst == (nextLast - 1) % (arr.length  -1)){
@@ -88,9 +126,35 @@ public class ArrayDeque<Item>{
         return this.size;
     }
 
+<<<<<<< HEAD
     //Prints the items in the Deque from first to last, separated by a space.
 //note should print the deque not the array.
     public void printDeque(){
+=======
+//    public void printDeque() {
+//        int ptr = nextFirst % (arr.length - 1) + 1;
+//        if (nextFirst > nextLast) {
+//            while (ptr <= arr.length - 1) {
+//                System.out.println(arr[ptr] + " ");
+//                ptr ++ ;
+//            }
+//            ptr = 0;
+//            while (ptr < nextLast) {
+//                System.out.println(arr[ptr] + " ");
+//                ptr ++ ;
+//            }
+//        }
+//        else {
+//            while (ptr < nextLast) {
+//                System.out.println(arr[ptr] + " ");
+//                ptr ++ ;
+//            }
+//        }
+//
+//    }
+
+    public void printDeque() {
+>>>>>>> parent of deefccd... Week 3
 
         int pointer = nextFirst % (arr.length - 1) + 1;
         while( pointer <= arr.length - 1){
@@ -110,6 +174,7 @@ public class ArrayDeque<Item>{
         if(size == 0){
             return null;
         }
+<<<<<<< HEAD
         Item item;
         if(nextFirst == arr.length - 1){
             item = (Item) arr[0];
@@ -117,6 +182,15 @@ public class ArrayDeque<Item>{
             nextFirst = 0;
         }else{
             item = (Item) arr[nextFirst + 1];
+=======
+        T item;
+        if (nextFirst == this.arr.length - 1) {
+            item = arr[0];
+            arr[0] = null;
+            nextFirst = 0;
+        } else {
+            item = arr [nextFirst + 1];
+>>>>>>> parent of deefccd... Week 3
             arr[nextFirst + 1] = null;
             nextFirst += 1;
         }
