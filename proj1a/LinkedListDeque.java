@@ -15,9 +15,7 @@ public class LinkedListDeque<T> {
 
     /**create an empty Linked List Deque*/
     public LinkedListDeque() {
-        this.sentinel = new Node(null, null, null);
-        this.sentinel.prev = this.sentinel;
-        this.sentinel.next = this.sentinel;
+        this.sentinel = new Node(null, this.sentinel, this.sentinel);
     }
 
     public void addFirst(T item) {
@@ -35,7 +33,7 @@ public class LinkedListDeque<T> {
     }
 
     public boolean isEmpty() {
-        return this.size == 0;
+        return (this.size == 0);
     }
 
     public int size() {
@@ -43,23 +41,20 @@ public class LinkedListDeque<T> {
     }
 
     public void printDeque() {
-        if (this.isEmpty()) {
-            return;
-        } else {
-            Node p = this.sentinel.next;
-            for (int i = 0; i < this.size; i++) {
-                System.out.println(p.item + " ");
-                p = p.next;
-            }
+        Node p = this.sentinel.next;
+        while(p != sentinel){
+            System.out.println(p.item + " ");
+            p = p.next;
         }
     }
 
     public T removeFirst() {
-        if (sentinel.next == null) {
+        if (this.isEmpty()) {
             return null;
         }
         T item = this.sentinel.next.item;
-        sentinel.next = sentinel.next.next;
+        this.sentinel.next = this.sentinel.next.next;
+        this.sentinel.next.prev = this.sentinel;
         this.size--;
         return item;
     }
